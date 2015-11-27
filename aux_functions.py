@@ -6,11 +6,6 @@ import sys
 import bisect
 import numpy as np
 
-
-
-hit_sum=0
-L_sum=0
-
 ##----------------------------------------------------------------------------            
 #given a starting point and a sequence of vector the functions returns an
 #array with the actula points of the polygon
@@ -20,21 +15,14 @@ def get_polygon_points(starting_point, vector_seq):
     """returns the actual coordinates of the points from the starting point
         and according to the vector sequence
     """
-        
-    #print("in auxiliary\\VP2_to_plain... \n...start timer...")
-    #t=time.process_time()
-    
+   
     res=[[]]
     res[0] = starting_point
     curr_point = starting_point
-    #print("in GET_POLYGON 1:",vector_seq,"len=",len(vector_seq))
-    #vector_seq_2.append(vector_seq[0])
-    #for i in range(1, len(vector_seq)):
+
     i=1
-    #l= len(vector
+
     while i<len(vector_seq):
-        #print('-->',i)
-        #if vector_seq[i]==vector_seq[i-1]:
         if are_parallel(vector_seq[i],vector_seq[i-1]):
             tmp = vector_seq[i]
             vector_seq[i-1][0]=vector_seq[i-1][0]+ tmp[0]
@@ -42,25 +30,16 @@ def get_polygon_points(starting_point, vector_seq):
             vector_seq.pop(i)
         else:
             i=i+1
-        #print('<< ', len(vector_seq))
-            
-    #print("in GET_POLYGON 2:",vector_seq,"len=",len(vector_seq))
-        
+   
     for x in vector_seq:
         x_coord = curr_point[0]+x[0]
         y_coord = curr_point[1]+x[1]
         curr_point=[x_coord, y_coord]
         res.append(curr_point)
 
-    #print(res)
-        
-    #elapsed_time = time.process_time()-t
-    #print("leaving get_polygon_points... time passed:",elapsed_time,"\n" )
     return res
 
 #-----------------------------------------------------------------------------
-
-#------------------------------------------------------------
 
 def vector_seq(polygon):
     """returns the vector sequence of a polygon
@@ -72,10 +51,8 @@ def vector_seq(polygon):
         vec_seq.append([P[i+1][0]-P[i][0], P[i+1][1]-P[i][1]])
     vec_seq.append([P[0][0]-P[N-1][0], P[0][1]-P[N-1][1]])
 
-    #print(vec_seq)
     return vec_seq
 #-----------------------------------------------------
-
 def are_parallel(vec1, vec2):
     if angle_between(vec1, vec2)==0:
         return True
@@ -83,7 +60,6 @@ def are_parallel(vec1, vec2):
         return False
 
 #-------------------------------------------------------------
-
 
 ##--------------- GCD
 def gcd(x, y):
