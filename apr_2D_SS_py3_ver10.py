@@ -21,14 +21,10 @@ def trim_2D_10(inL, mu):
     column 2, length
     column 3, angle
     column 4, list of indexes
-
-    """
-
-    #print(inL)
+"""
     
     t = time.process_time() 
     #sort according to the vectors length
-    #sorted_L= sort_by_col(inL,2)
     sorted_L=inL
     #we suppose the list is already sorted
     N=len(inL)
@@ -68,10 +64,8 @@ def trim_2D_10(inL, mu):
     i=i-1            
     if i<0:
         i=0        
-    #print("> > > > > > \t",i)
     
     j=i
-    
     r=0
 
     if R==[]:
@@ -81,10 +75,6 @@ def trim_2D_10(inL, mu):
         
     while i<N:
         x=sorted_L[i]     
-
-        #r=len(R)-1      #the last element of R
-        #while R[r][2]*(1+mu)>=x[2] and r>=0:
-        #    r=r-1
 
         r=bin_search_2D(R, int(x[2]/(1+mu)), 2, r)
             
@@ -151,8 +141,6 @@ def D2_SS_approx(               inList,
     #               its length,its angle in radians and its index
     index=0
     for i in inList:
-        #x_list.append(i[0])
-        #y_list.append(i[1])
         i_len = (i[0]**2+i[1]**2)**(0.5)
         i_angle = angle_2D([i[0],i[1]])
         max_len = max_len+i_len
@@ -213,10 +201,8 @@ def D2_SS_approx(               inList,
              
         U = sort_by_col(U, 2)
 
-        
         #print("largest length in U",U[len(U)-1][2])
         #print("difference =",max_boundary-U[len(U)-1][2])
-
 
         #trim the list U
         S = trim_2D_10(U, c/(float(N)**2))
