@@ -1,7 +1,7 @@
 from aux_functions import *
 from apr_2D_SS_py3_ver10 import D2_SS_approx
 from scipy.spatial import ConvexHull
-#import matplotlib.pyplot as plt
+
 
 def process_polygon (point_List):
     #for every vertex v_i in List calculate the vector a_i=v_i-v_{i-1}
@@ -46,9 +46,7 @@ def process_polygon (point_List):
         if abs(E[i][1])>maxE:
             maxE=abs(E[i][1])
     #^for
-    
 
-    #print ('d =',d,'sum(d)=', sum(d))
     #now E hold the primitive sequence of edges
 
     #we must also create the array of all possible vectors
@@ -57,11 +55,6 @@ def process_polygon (point_List):
     A=[]
     
     #N*D time to make array A with each primitive vector d[i] times
-    '''
-    for i in range(0,N):
-        for j in range(1,int(d[i]+1)):
-            A.append([E[i][0], E[i][1]])
-    '''
 
     for i in range(0,N):
         if d[i]==1:
@@ -98,7 +91,6 @@ def mink_dec_SS_approx(polygon, e):
     #the two first position are trivial solution:
     #one must be the empty vector and the other all vectors
     S.pop(0)
-    #S.pop(0)
 
     starting_point_A=polygon[0]
     starting_point_B=[0,0]
@@ -140,8 +132,6 @@ for x in Ph.vertices:
     Pp.append([Ph.points[x][0], Ph.points[x][1]])
 #P=[[24,59],[60,90],[83,67],[88,47],[98,21],[48,7],[30,14]]
 print("input polygon=",Pp,", number of vertices=", len(Pp))
-
-#P=[ (2, 0), (1, 1), (0, 3),  (11, 1), (10, 0)]
 
 t = time.process_time() 
 A,B= mink_dec_SS_approx(Pp,0.1)
