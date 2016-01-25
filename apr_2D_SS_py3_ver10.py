@@ -80,7 +80,6 @@ def trim_2D_10(inL, mu):
             
         if len(R)-r>max_win:
             max_win=len(R)-r
-        #print(r, "window is", len(R)-r)
         
         #at this point, r indicates the the first vector v (the shortest)
         #in whose zone x belongs
@@ -105,7 +104,6 @@ def trim_2D_10(inL, mu):
      
     #print("\nin trim:original size=",N2 ," hits=",N2-len(R), "len(ret)=",len(R))
     #print("percentage of deleted items=",round((N2-len(R))/N2*100,2),"%")
-    #print(">>growth ratio>>",2*(len(R))/(N2))
     print("maximum window is:", max_win,"len(L_i)=",len(R))
     elap_t = time.process_time() - t
     print("time elapsed=",elap_t)
@@ -167,7 +165,6 @@ def D2_SS_approx(               inList,
     for x in p_list_2:
         t = time.process_time() 
         T = []
-        #len_x=(x[0]**2+x[1]**2)**(0.5)
         len_x=x[2]
         max_boundary = max_len-max_len_i+c*M/N
         
@@ -188,9 +185,8 @@ def D2_SS_approx(               inList,
                 max_len_hits=max_len_hits +1
 
         elap_t = time.process_time() - t
-        #print("((time elapsed for creating U=",elap_t,"))")
+
         U = T + S
-        #print("len(U) before",len(U))
         
         #print(index,"::")
         index=index+1
@@ -207,13 +203,10 @@ def D2_SS_approx(               inList,
         #trim the list U
         S = trim_2D_10(U, c/(float(N)**2))
 
-        #print("\n")
-
        
     #position, res[1], it has the numbers that achieve this result as an array
     #res = sort_by_col(S, 2)
     res = S
-    #print("_=_=_=_ _ res:")
     i=0;
     for x in res:
         #print(i,":",x)
